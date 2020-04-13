@@ -3,8 +3,7 @@ read response
 
 file_count=$(git ls-files | wc -l)
 
-while [[ $response -ne $file_count ]]
-do
+function Guessing {
 	if [[ $response -gt $file_count ]]
 	then
 		echo "Nope. Too large. Try again."
@@ -17,6 +16,11 @@ do
 		echo "How many files are in this repository?"
 		read response
 	fi
+}
+
+while [[ $response -ne $file_count ]]
+do
+	Guessing
 done
 
 if [[ $response -eq $file_count ]]
