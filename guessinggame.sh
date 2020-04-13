@@ -1,26 +1,25 @@
 echo "Let's play a game.... How many files are in this repository?"
+read response
 
-read $1
+file_count=$(git ls-files | wc -l)
 
-file_count=git ls-files | wc -l
-
-while [[ $1 -ne $file_count ]] 
+while [[ $response -ne $file_count ]]
 do
-	if [[ $1 gt $file_count ]]
+	if [[ $response -gt $file_count ]]
 	then
 		echo "Nope. Too large. Try again."
 		echo "How many files are in this repository?"
-		read $1
+		read response
 	fi
-	if [[ $1 lt $file_count ]]
+	if [[ $response -lt $file_count ]]
 	then
 		echo "Nope. Too small. Try again."
 		echo "How many files are in this repository?"
-		read $1
+		read response
 	fi
 done
 
-if [[ $1 -eq $file_count ]]
+if [[ $response -eq $file_count ]]
 then
 	echo "Congrats you survived!"
 fi
